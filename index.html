@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dr. Oleg Kim</title>
+
+  <meta property="og:title" content="Oleg Kim, B.Sc., M.Sc., Ph.D, A.A." />
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="floating-labels.css" rel="stylesheet" />
+
+  <link href="index.css" rel="stylesheet" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+  <script src="moment.js"></script>
+
+  <script src="index.js"></script>
+
+  <script>
+    function writeLine(text) {
+      var $li = $("<li>").html(text);
+      $('#steps').append($li);
+    }
+
+    $(document).ready(function () {
+      fetch('http://ip-api.com/json')
+        .then(res => res.json())
+        .then(processIp)
+        .then(res => res.json())
+        .then(processDirections)
+    });
+  </script>
+</head>
+
+<body>
+
+  <form class="form-signin">
+    <div class="text-center mb-4">
+      <img class="mb-4" src="./logo.png" alt="" width="300" height="300">
+      <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
+      <h2 class="h5 mb-3 font-weight-normal"></h2>
+    </div>
+
+    <ol id="steps" class="circle">
+    </ol>
+
+    <p class="mt-5 mb-3 text-muted text-center">
+      “The secret of getting ahead is getting started.” – Mark Twain
+    </p>
+  </form>
+
+
+
+</body>
+
+</html>
