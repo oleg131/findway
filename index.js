@@ -4,7 +4,9 @@ const instructions = {
   'train': 'Take a train',
   'transfer': 'Walk',
   'subway': 'Take the subway',
-  'flight': 'Fly'
+  'flight': 'Fly',
+  'taxi': 'Take a taxi',
+  'unknown': 'Drive'
 }
 
 const icons = {
@@ -13,7 +15,9 @@ const icons = {
   'train': '🚆',
   'transfer': '🚶',
   'subway': '🚇',
-  'flight': '✈️'
+  'flight': '✈️',
+  'taxi': '🚕',
+  'unknown': '🚗'
 }
 
 function handleError(e) {
@@ -28,12 +32,9 @@ function processLookup(data) {
   return promise
 }
 
-function processIp(data) {
-  let lat = 51.503723
-  let lon = -0.109207
-
-  lat = data.lat
-  lon = data.lon
+function processLatLon(data) {
+  const lat = data.lat
+  const lon = data.lon
 
   const params = {
     oShort: "",
@@ -72,6 +73,9 @@ function processDirections(data) {
       case 'transit':
         step = processLine(processTransit(element), index)
         break;
+      case 'car':
+        step = processLine(processTransit(element), index)
+        break
       case 'walk':
         step = processLine(processWalk(element), index)
         break
