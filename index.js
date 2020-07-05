@@ -16,6 +16,18 @@ const icons = {
   'flight': '✈️'
 }
 
+function handleError(e) {
+  console.log(e)
+  $('h1').html('An error has unfortunately occured')
+}
+
+function processLookup(data) {
+  const ip = data.split('\n')[2].split('=')[1]
+  const promise = fetch(`https://cors-anywhere.herokuapp.com/http://ip-api.com/json/${ip}`)
+
+  return promise
+}
+
 function processIp(data) {
   let lat = 51.503723
   let lon = -0.109207
@@ -92,7 +104,8 @@ function processTransit(element) {
 }
 
 function processWalk(element) {
-  const line = `${icons[element[1]]} <span style="border-bottom: 3px solid gray;">${instructions[element[1]]}</span> to ${element[7][1]} ${element[7][0]}`
+  const kind = element[7][0] == 'node' ? '' : element[7][0]
+  const line = `${icons[element[1]]} <span style="border-bottom: 3px solid gray;">${instructions[element[1]]}</span> to ${element[7][1]} ${kind}`
 
   return (line)
 }
