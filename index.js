@@ -63,11 +63,8 @@ function processDirections(data) {
   $('h2').html(`You can see Oleg in about
     ${moment.duration(time, 'seconds').humanize({ m: 59 })} (plus waiting time)`)
 
-  let timeout = 0
-
   for (let index = 0; index < directions.length; index++) {
     const element = directions[index];
-    console.log(element)
 
     let step
 
