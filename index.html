@@ -51,10 +51,10 @@
 
     $(document).ready(function () {
       const urlParams = new URLSearchParams(window.location.search)
-      const lat = urlParams.get('lat');
-      const lon = urlParams.get('lon')
+      const latlon = urlParams.get('latlon');
 
-      if (lat && lon) {
+      if (latlon) {
+        const [lat, lon] = latlon.split(',')
         processLatLon({ lat, lon })
           .then(res => res.json())
           .then(processDirections)
@@ -62,6 +62,8 @@
 
         return
       }
+
+      console.log('Getting ip')
 
       fetch('https://www.cloudflare.com/cdn-cgi/trace')
         .then(res => res.text())

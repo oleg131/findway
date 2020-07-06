@@ -6,6 +6,7 @@ const instructions = {
   'subway': 'Take the subway',
   'flight': 'Fly',
   'taxi': 'Take a taxi',
+  'car': 'Drive',
   'unknown': 'Drive'
 }
 
@@ -17,6 +18,7 @@ const icons = {
   'subway': '🚇',
   'flight': '✈️',
   'taxi': '🚕',
+  'car': '🚗',
   'unknown': '🚗'
 }
 
@@ -27,7 +29,10 @@ function handleError(e) {
 
 function processLookup(data) {
   const ip = data.split('\n')[2].split('=')[1]
-  const promise = fetch(`https://cors-anywhere.herokuapp.com/http://ip-api.com/json/${ip}`)
+
+  console.log('Getting location')
+
+  const promise = fetch(`http://oleg.kim:8080/http://ip-api.com/json/${ip}`)
 
   return promise
 }
@@ -47,6 +52,8 @@ function processLatLon(data) {
     dCanonical: 'Vancouver-City-Centre-Station',
     version: 'local',
   }
+
+  console.log('Getting directions')
 
   const promise = fetch(
     `https://www.rome2rio.com/api/json/GetRoutes?`
