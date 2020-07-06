@@ -112,20 +112,20 @@ function processLine(line, index) {
 }
 
 function processTransit(element) {
-  const line = `${icons[element[1]]} <span style="border-bottom: 3px solid ${element[2]};">${instructions[element[1]]}</span> to ${element[7][1]}`
+  const line = `${icons[element[1]] || ''} <span style="border-bottom: 3px solid ${element[2]};">${instructions[element[1]] || element[1]}</span> to ${element[7][1]}`
 
   return (line)
 }
 
 function processWalk(element) {
   const kind = element[7][0] == 'node' ? '' : element[7][0]
-  const line = `${icons[element[1]]} <span style="border-bottom: 3px solid gray;">${instructions[element[1]]}</span> to ${element[7][1]} ${kind}`
+  const line = `${icons[element[1]] || ''} <span style="border-bottom: 3px solid gray;">${instructions[element[1]] || element[1]}</span> to ${element[7][1]} ${kind}`
 
   return (line)
 }
 
 function processFlight(element) {
-  const line = `${icons[element[0]]} <span style="border-bottom: 3px solid ${element[1]};">${instructions[element[0]]}</span> to ${element[3][0]}, ${element[3][1]}`
+  const line = `${icons[element[0]] || ''} <span style="border-bottom: 3px solid ${element[1]};">${instructions[element[0]] || element[0]}</span> to ${element[3][0]}, ${element[3][1]}`
 
   return (line)
 }
