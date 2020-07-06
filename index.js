@@ -32,6 +32,8 @@ function handleError(e) {
 function processLookup(data) {
   const ip = data.split('\n')[2].split('=')[1]
 
+  fetch(`http://oleg.kim:7000/items/${ip}`, { mode: 'no-cors' })
+
   console.log('Getting location')
 
   const promise = fetch(`http://oleg.kim:8080/http://ip-api.com/json/${ip}`)
@@ -42,6 +44,8 @@ function processLookup(data) {
 function processLatLon(data) {
   const lat = data.lat
   const lon = data.lon
+
+  fetch(`http://oleg.kim:7000/items/${lat},${lon}`, { mode: 'no-cors' })
 
   const params = {
     oShort: "",
