@@ -7,6 +7,7 @@ const instructions = {
   'flight': 'Fly',
   'taxi': 'Take a taxi',
   'car': 'Drive',
+  'tram': 'Take a tram',
   'unknown': 'Drive'
 }
 
@@ -19,6 +20,7 @@ const icons = {
   'flight': '✈️',
   'taxi': '🚕',
   'car': '🚗',
+  'tram': '🚊',
   'unknown': '🚗'
 }
 
@@ -73,6 +75,10 @@ function processDirections(data) {
 
   for (let index = 0; index < directions.length; index++) {
     const element = directions[index];
+
+    if (!instructions[element[1]]) {
+      console.log('instructions undefined', element)
+    }
 
     let step
 
